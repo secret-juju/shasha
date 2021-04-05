@@ -58,7 +58,5 @@ module.exports = {
     inline: true,
     hot: true,
     historyApiFallback: true,
-    disableHostCheck: true,
-    host: '0.0.0.0',
   },
 };
