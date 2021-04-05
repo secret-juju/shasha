@@ -1,7 +1,16 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
+import Router from './Router';
+import { GlobalStyle } from './GlobalStyle';
 
 const App = () => {
-  return <div>12345</div>;
+  return (
+    <BrowserRouter>
+      <GlobalStyle />
+      <Router />
+    </BrowserRouter>
+  );
 };
 
 export default App;
