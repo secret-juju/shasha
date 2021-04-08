@@ -6,7 +6,7 @@
   "author": "CutyApple <dbtldhs0915@naver.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --config jest.config.js --watchAll",
+    "test": "jest --config jest.config.js --verbose --watchAll --coverage",
     "start": "webpack-dev-server --mode development --hot --port 3000",
     "build": "webpack --mode production"
   },
