@@ -25,7 +25,7 @@ const Login = () => {
     return <div>Please Check REACT_APP_NAVER_API_KEY</div>;
   }
 
-  const onSuccessGogle = async (result: GoogleResponseType) => {
+  const onSuccessGoogle = async (result: GoogleResponseType) => {
     console.log(result);
     if ('tokenId' in result) {
       const res = await axios.get(
@@ -66,7 +66,7 @@ const Login = () => {
       <S.LoginWrapper>
         <GoogleLogin
           clientId={REACT_APP_GOOGLE_API_KEY}
-          onSuccess={onSuccessGogle}
+          onSuccess={onSuccessGoogle}
           onFailure={onFailureGoogle}
           cookiePolicy='single_host_origin'
           render={renderProps => (
