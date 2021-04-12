@@ -1,8 +1,8 @@
 import React from 'react';
 
 import * as S from './style';
-import Login from '../features/login/Login';
-import Header from '../components/header/Header';
+import Login from '../../features/login/Login';
+import Header from '../../components/header/Header';
 
 const LoginPage = () => {
   return (
