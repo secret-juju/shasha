@@ -5,9 +5,14 @@ import { LogoPng } from '../../assets/header';
 
 const Header = () => {
   return (
-    <S.Header>
-      <S.HeaderLogo alt='secret juju' src={LogoPng} />
-    </S.Header>
+    <>
+      <S.Header>
+        <S.HeaderLogo alt='secret juju' src={LogoPng} />
+      </S.Header>
+      <S.HeaderSubNav>
+        <S.HeaderAuthButton>{true ? '로그인' : '로그아웃'}</S.HeaderAuthButton>
+      </S.HeaderSubNav>
+    </>
   );
 };
 
