@@ -16,7 +16,8 @@ export const methodType = {
 };
 
 const BASE_URL: DotEnvType = process.env.REACT_APP_BASE_URL;
-const LOCAL_STORAGE_ACCESS_TOKEN_NAME = 'accessToken';
+export const LOCAL_STORAGE_ACCESS_TOKEN_NAME = 'accessToken';
+export const LOCAL_STORAGE_REFRESH_TOKEN_NAME = 'refreshToken';
 const ACCESS_TOKEN_NAME = 'Bearer Authorization';
 
 export const requestApiWithBodyAndAccessToken = async ({
