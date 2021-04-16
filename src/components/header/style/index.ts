@@ -32,4 +32,8 @@ export const HeaderAuthButton = styled.button`
   background: none;
   border: none;
   padding: 0;
+
+  &:hover {
+    color: #000000;
+  }
 `;
