@@ -5,9 +5,9 @@ import Login from './Login';
 import { DotEnvType } from '../../types';
 import { GoogleFailureResponseType, GoogleResponseType } from './LoginType';
 
-import { useAppDispatch } from '../../module/store';
+import { useAppDispatch, useTypedSelector } from '../../module/store';
 
-import { authLogin } from './LoginSlice';
+import { authLogin, loginData, loginSliceState } from './LoginSlice';
 
 const { naver } = window as any;
 
@@ -18,23 +18,23 @@ const LoginContainer = () => {
   const REACT_APP_FACEBOOK_API_KEY: DotEnvType = process.env.REACT_APP_FACEBOOK_API_KEY;
   const REACT_APP_NAVER_API_KEY: DotEnvType = process.env.REACT_APP_NAVER_API_KEY;
 
-  const onSuccessGoogleLogin = async (response: GoogleResponseType) => {
+  const onSuccessGoogleAuth = async (response: GoogleResponseType) => {
     if ('tokenId' in response) {
       dispatch(authLogin({ authType: 'google', 'oauth2-token': response.tokenId }));
     }
   };
-  const onFailureGoogleLogin = (error: GoogleFailureResponseType) => {
+  const onFailureGoogleAuth = (error: GoogleFailureResponseType) => {
     alert('구글 로그인에 실패하였습니다. 다시 시도해주세요.');
   };
 
-  const onSuccessFacebookLogin = userInfo => {
+  const onSuccessFacebookAuth = userInfo => {
     console.log(userInfo);
   };
-  const onFailureFacebookLogin = response => {
+  const onFailureFacebookAuth = response => {
     alert('페이스북 로그인에 실패하였습니다. 다시 시도해주세요.');
   };
 
-  const initializeNaverLogin = () => {
+  const initializeNaverAuth = () => {
     const naverLogin = new naver.LoginWithNaverId({
       clientId: REACT_APP_NAVER_API_KEY,
       callbackUrl: 'http://localhost:3000/login/naver/redirect',
@@ -51,11 +51,11 @@ const LoginContainer = () => {
   };
 
   const funcProps = {
-    onSuccessGoogleLogin,
-    onFailureGoogleLogin,
-    onSuccessFacebookLogin,
-    onFailureFacebookLogin,
-    initializeNaverLogin,
+    onSuccessGoogleAuth,
+    onFailureGoogleAuth,
+    onSuccessFacebookAuth,
+    onFailureFacebookAuth,
+    initializeNaverAuth,
   };
 
   return <Login apiKeyProps={apiKeyProps} funcProps={funcProps} />;
