@@ -16,11 +16,11 @@ const Login = ({ apiKeyProps, funcProps }: LoginType) => {
     REACT_APP_NAVER_API_KEY,
   } = apiKeyProps;
   const {
-    onSuccessGoogleLogin,
-    onFailureGoogleLogin,
-    onSuccessFacebookLogin,
-    onFailureFacebookLogin,
-    initializeNaverLogin,
+    onSuccessGoogleAuth,
+    onFailureGoogleAuth,
+    onSuccessFacebookAuth,
+    onFailureFacebookAuth,
+    initializeNaverAuth,
   } = funcProps;
 
   if (typeof REACT_APP_GOOGLE_API_KEY !== 'string') {
@@ -34,7 +34,7 @@ const Login = ({ apiKeyProps, funcProps }: LoginType) => {
   }
 
   useEffect(() => {
-    initializeNaverLogin();
+    initializeNaverAuth();
   }, []);
 
   return (
@@ -43,8 +43,8 @@ const Login = ({ apiKeyProps, funcProps }: LoginType) => {
       <S.LoginWrapper>
         <GoogleLogin
           clientId={REACT_APP_GOOGLE_API_KEY}
-          onSuccess={onSuccessGoogleLogin}
-          onFailure={onFailureGoogleLogin}
+          onSuccess={onSuccessGoogleAuth}
+          onFailure={onFailureGoogleAuth}
           cookiePolicy='single_host_origin'
           render={renderProps => (
             <S.GoogleLoginButton onClick={renderProps.onClick}>
@@ -58,8 +58,8 @@ const Login = ({ apiKeyProps, funcProps }: LoginType) => {
           appId={REACT_APP_FACEBOOK_API_KEY}
           autoLoad={false}
           fields='name,first_name,last_name,email,picture'
-          callback={onSuccessFacebookLogin}
-          onFailure={onFailureFacebookLogin}
+          callback={onSuccessFacebookAuth}
+          onFailure={onFailureFacebookAuth}
           textButton='페이스북으로 로그인'
           icon={<S.FacebookLoginImage src={FacebookIconPng} />}
         />
