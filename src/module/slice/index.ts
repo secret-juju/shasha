@@ -1,6 +1,8 @@
-import { combineReducers } from "@reduxjs/toolkit";
+import { combineReducers } from '@reduxjs/toolkit';
 
-const rootReducer = combineReducers({});
+import loginReducer from '../../features/login/LoginSlice';
+
+const rootReducer = combineReducers({ login: loginReducer });
 
 export type RootReducerType = ReturnType<typeof rootReducer>;
 
