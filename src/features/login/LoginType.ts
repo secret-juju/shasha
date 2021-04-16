@@ -9,11 +9,11 @@ export type LoginType = {
     REACT_APP_NAVER_API_KEY: DotEnvType;
   };
   funcProps: {
-    onSuccessGoogleLogin: (response: GoogleResponseType) => void;
-    onFailureGoogleLogin: (error: GoogleFailureResponseType) => void;
-    onSuccessFacebookLogin: (userInfo: FacebookReponseType) => void;
-    onFailureFacebookLogin: (response: FacebookFailureResponseType) => void;
-    initializeNaverLogin: () => void;
+    onSuccessGoogleAuth: (response: GoogleResponseType) => void;
+    onFailureGoogleAuth: (error: GoogleFailureResponseType) => void;
+    onSuccessFacebookAuth: (userInfo: FacebookReponseType) => void;
+    onFailureFacebookAuth: (response: FacebookFailureResponseType) => void;
+    initializeNaverAuth: () => void;
   };
 };
 
@@ -40,6 +40,7 @@ export type AuthLoginPayloadActionType = {
   'oauth2-token': string;
 };
 export type AuthLoginSuccessPayloadActionType = {
+  authType: string;
   accessToken: string;
   accountName: string;
   refreshToken: string;
