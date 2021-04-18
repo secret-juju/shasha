@@ -7,14 +7,14 @@ const DropDownFadeIn = keyframes`
   }
   100% {
     opacity: 1;
-    height: 9.375rem;
+    height: 100%;
   }
 `;
 
 const DropDownFadeOut = keyframes`
   0% {
     opacity: 1;
-    height: 9.375rem;
+    height: 100%;
   }
   100% {
     opacity: 0;
@@ -94,12 +94,12 @@ export const DropDownItemWrapper = styled.div`
   ${props =>
     props.active
       ? css`
-          height: 150px;
+          height: ${props => `calc(${props.itemLength} * 1.875rem)`};
           opacity: 1;
           animation: 0.3s ${DropDownFadeIn} ease-in-out;
         `
       : css`
-          height: 30px;
+          height: 1.875rem;
           opacity: 0;
           animation: 0.3s ${DropDownFadeOut} ease-in-out;
         `}
