@@ -38,7 +38,7 @@ const DropDown = ({
           ))}
         </S.DropDownItemWrapper>
       ) : (
-        ''
+        '드롭다운 데이터가 없습니다'
       )}
     </S.DropDownSection>
   );
