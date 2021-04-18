@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import type { DropDownPropsType } from './DropDownType';
 
-import { DropDownArrowSvg } from '../../assets/dropdown';
+import { DropDownArrowSvg } from '../../assets/dropDown';
 
 import * as S from './style';
 
-const DropDown = ({ dropDownItems, selectDropDownItem }: DropDownPropsType) => {
+const DropDown = ({
+  selectDropDownItem,
+  unSelectDropDownItems,
+  onDropDownItemClick,
+}: DropDownPropsType) => {
   const [active, setActive] = useState(false);
   const [firstLoading, setFirstLoading] = useState(true);
 
@@ -20,10 +24,14 @@ const DropDown = ({ dropDownItems, selectDropDownItem }: DropDownPropsType) => {
         <S.SelectDropDownItem>{selectDropDownItem}</S.SelectDropDownItem>
         <S.SelectDropDownArrow src={DropDownArrowSvg} active={active} />
       </S.SelectDropDownItemWrapper>
-      {dropDownItems.length ? (
-        <S.DropDownItemWrapper active={active} firstLoading={firstLoading}>
-          {dropDownItems.map(dropDownItem => (
-            <S.DropDownItem key={dropDownItem} value={dropDownItem}>
+      {unSelectDropDownItems.length ? (
+        <S.DropDownItemWrapper
+          active={active}
+          firstLoading={firstLoading}
+          itemLength={unSelectDropDownItems.length}
+        >
+          {unSelectDropDownItems.map(dropDownItem => (
+            <S.DropDownItem key={dropDownItem} onClick={() => onDropDownItemClick(dropDownItem)}>
               {dropDownItem}
             </S.DropDownItem>
           ))}
