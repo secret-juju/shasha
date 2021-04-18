@@ -7,11 +7,12 @@ import { DropDownArrowSvg } from '../../assets/dropDown';
 import * as S from './style';
 
 const DropDown = ({
+  active,
   selectDropDownItem,
   unSelectDropDownItems,
   onDropDownItemClick,
+  onDropDownSectionClick,
 }: DropDownPropsType) => {
-  const [active, setActive] = useState(false);
   const [firstLoading, setFirstLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const DropDown = ({
   }, [active]);
 
   return (
-    <S.DropDownSection onClick={() => setActive(prev => !prev)}>
+    <S.DropDownSection onClick={onDropDownSectionClick} className='drop-down-section'>
       <S.SelectDropDownItemWrapper active={active}>
         <S.SelectDropDownItem>{selectDropDownItem}</S.SelectDropDownItem>
         <S.SelectDropDownArrow src={DropDownArrowSvg} active={active} />
