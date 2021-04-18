@@ -27,7 +27,7 @@ export const DropDownSection = styled.section`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  width: 11.25rem;
+  width: 7.25rem;
   height: 1.875rem;
 `;
 
@@ -83,6 +83,7 @@ export const DropDownItemWrapper = styled.div`
   width: 7.25rem;
   border: 1px solid #707070;
   border-top: 1px solid transparent;
+  box-sizing: border-box;
   overflow: hidden;
 
   ${props =>
