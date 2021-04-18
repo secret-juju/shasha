@@ -100,7 +100,7 @@ export const DropDownItemWrapper = styled.div`
           animation: 0.3s ${DropDownFadeIn} ease-in-out;
         `
       : css`
-          height: 1.875rem;
+          height: 0;
           opacity: 0;
           animation: 0.3s ${DropDownFadeOut} ease-in-out;
         `}
