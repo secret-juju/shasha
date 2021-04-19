@@ -1,19 +1,27 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
-import ReactFacebookLogin from 'react-facebook-login';
+
 import GoogleLogin from 'react-google-login';
+import ReactFacebookLogin from 'react-facebook-login';
+
+import type { LoginType } from './LoginType';
+
+import { FacebookIconPng, GoogleIconPng } from '../../assets/login';
 
 import * as S from './style';
 
-import { FacebookIconPng, GoogleIconPng } from '../../assets/login';
-import { API_KEY, GoogleResponseType } from './LoginType';
-
-const { naver } = window as any;
-
-const Login = () => {
-  const REACT_APP_GOOGLE_API_KEY: API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-  const REACT_APP_FACEBOOK_API_KEY: API_KEY = process.env.REACT_APP_FACEBOOK_API_KEY;
-  const REACT_APP_NAVER_API_KEY: API_KEY = process.env.REACT_APP_NAVER_API_KEY;
+const Login = ({ apiKeyProps, funcProps }: LoginType) => {
+  const {
+    REACT_APP_GOOGLE_API_KEY,
+    REACT_APP_FACEBOOK_API_KEY,
+    REACT_APP_NAVER_API_KEY,
+  } = apiKeyProps;
+  const {
+    onSuccessGoogleAuth,
+    onFailureGoogleAuth,
+    onSuccessFacebookAuth,
+    onFailureFacebookAuth,
+    initializeNaverAuth,
+  } = funcProps;
 
   if (typeof REACT_APP_GOOGLE_API_KEY !== 'string') {
     return <div>Please Check REACT_APP_GOOGLE_API_KEY</div>;
@@ -21,43 +29,12 @@ const Login = () => {
   if (typeof REACT_APP_FACEBOOK_API_KEY !== 'string') {
     return <div>Please Check REACT_APP_FACEBOOK_API_KEY</div>;
   }
-  if (typeof REACT_APP_FACEBOOK_API_KEY !== 'string') {
+  if (typeof REACT_APP_NAVER_API_KEY !== 'string') {
     return <div>Please Check REACT_APP_NAVER_API_KEY</div>;
   }
 
-  const onSuccessGogle = async (result: GoogleResponseType) => {
-    console.log(result);
-    if ('tokenId' in result) {
-      const res = await axios.get(
-        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${result.tokenId}`,
-      );
-
-      console.log(res);
-    }
-  };
-  const onFailureGoogle = (error: any) => {
-    console.log(error);
-  };
-
-  const facebookLoginCallback = res => {
-    console.log(res);
-  };
-  const facebookLoginFailure = response => {
-    console.log(response);
-  };
-
-  const initializeNaverLogin = () => {
-    const naverLogin = new naver.LoginWithNaverId({
-      clientId: REACT_APP_NAVER_API_KEY,
-      callbackUrl: 'http://localhost:3000/login/naver/redirect',
-      isPopup: false,
-      loginButton: { color: 'green', type: 3, height: '75' },
-    });
-    naverLogin.init();
-  };
-
   useEffect(() => {
-    initializeNaverLogin();
+    initializeNaverAuth();
   }, []);
 
   return (
@@ -66,8 +43,8 @@ const Login = () => {
       <S.LoginWrapper>
         <GoogleLogin
           clientId={REACT_APP_GOOGLE_API_KEY}
-          onSuccess={onSuccessGogle}
-          onFailure={onFailureGoogle}
+          onSuccess={onSuccessGoogleAuth}
+          onFailure={onFailureGoogleAuth}
           cookiePolicy='single_host_origin'
           render={renderProps => (
             <S.GoogleLoginButton onClick={renderProps.onClick}>
@@ -81,8 +58,8 @@ const Login = () => {
           appId={REACT_APP_FACEBOOK_API_KEY}
           autoLoad={false}
           fields='name,first_name,last_name,email,picture'
-          callback={userInfo => facebookLoginCallback(userInfo)}
-          onFailure={response => facebookLoginFailure(response)}
+          callback={onSuccessFacebookAuth}
+          onFailure={onFailureFacebookAuth}
           textButton='페이스북으로 로그인'
           icon={<S.FacebookLoginImage src={FacebookIconPng} />}
         />
