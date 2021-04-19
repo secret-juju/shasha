@@ -1,38 +1,40 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { DropDownItemType, DropDownContainerPropsType, DropDownItemsType } from './DropDownType';
+import { DropDownItemType } from './DropDownType';
+
+import { useAppDispatch, useTypedSelector } from '../../module/store';
+
+import { dropDownSliceState, clickDropDownItem } from './DropDownSlice';
 
 import DropDown from './DropDown';
 
-const DropDownContainer = ({ dropDownItems, defaultDropDownItem }: DropDownContainerPropsType) => {
+const DropDownContainer = () => {
+  const dispatch = useAppDispatch();
+  const { selectDropDownItem, unSelectDropDownItems } = useTypedSelector(dropDownSliceState);
+
   const [active, setActive] = useState(false);
-  const [selectDropDownItem, setSelectDropDownItem] = useState<DropDownItemType>(
-    defaultDropDownItem,
+
+  const dispatchClickDropDownItem = useCallback(
+    (dropDownItem: DropDownItemType) => {
+      dispatch(clickDropDownItem({ dropDownItem }));
+    },
+    [dispatch],
   );
-  const [unSelectDropDownItems, setUnSelectDropDownItems] = useState<DropDownItemsType>([]);
 
-  const onDropDownItemClick = useCallback(selectDropDownItem => {
-    setSelectDropDownItem(selectDropDownItem);
-    setUnSelectDropDownItems(
-      dropDownItems.filter(dropDownItem => dropDownItem !== selectDropDownItem),
-    );
-  }, []);
-
-  const onDropDownSectionClick = useCallback(() => {
+  const onDropDownItemClick = (selectDropDownItem: DropDownItemType) => {
+    dispatchClickDropDownItem(selectDropDownItem);
+  };
+  const onDropDownSectionClick = () => {
     setActive(prevState => !prevState);
-  }, []);
+  };
 
-  const handleWindowClick = useCallback(e => {
+  const handleWindowClick = e => {
     if (!e.target.closest(`.drop-down-section`)) {
       setActive(false);
     }
-  }, []);
+  };
 
   useEffect(() => {
-    setUnSelectDropDownItems(
-      dropDownItems.filter(dropDownItem => dropDownItem !== defaultDropDownItem),
-    );
-
     document.addEventListener('click', handleWindowClick);
 
     return () => {
