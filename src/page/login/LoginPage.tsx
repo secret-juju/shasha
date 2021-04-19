@@ -1,15 +1,16 @@
 import React from 'react';
 
 import * as S from './style';
-import Login from '../features/login/Login';
-import Header from '../components/header/Header';
+
+import Header from '../../components/header/Header';
+import LoginContainer from '../../features/login/LoginContainer';
 
 const LoginPage = () => {
   return (
     <S.Container>
       <Header />
       <S.LoginWrapper>
-        <Login />
+        <LoginContainer />
       </S.LoginWrapper>
     </S.Container>
   );
