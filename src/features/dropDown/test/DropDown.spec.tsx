@@ -2,25 +2,17 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { DropDownItemsType, DropDownItemType } from '../DropDownType';
+import { DropDownItemsType, DropDownItemType, DropDownTestInitialPropsType } from '../DropDownType';
 
 import { mocksDefaultDropDownItem, mocksDropDownItems } from '../../../__mocks__/dropDownMocks';
 
 import DropDown from '../DropDown';
 
 describe('DropDown', () => {
-  type InitialPropsType = {
-    active?: boolean;
-    selectDropDownItem?: DropDownItemType;
-    unSelectDropDownItems?: DropDownItemsType;
-    onDropDownItemClick?: (dropDownItem: DropDownItemType) => void;
-    onDropDownSectionClick?: () => void;
-  };
-
   const onDropDownItemClickMock = jest.fn();
   const onDropDownSectionClickMock = jest.fn();
 
-  const setUp = (initialProps: InitialPropsType = {}) => {
+  const setUp = (initialProps: DropDownTestInitialPropsType = {}) => {
     const defaultProps = Object.assign(
       {
         active: true,
