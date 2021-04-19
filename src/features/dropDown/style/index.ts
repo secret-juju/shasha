@@ -22,6 +22,8 @@ const DropDownFadeOut = keyframes`
   }
 `;
 
+export const DropDownWrapper = styled.div``;
+
 export const DropDownSection = styled.section`
   display: flex;
   align-items: center;
