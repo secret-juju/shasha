@@ -9,7 +9,12 @@ export type DropDownPropsType = {
   onDropDownItemClick: (dropDownItem: DropDownItemType) => void;
   onDropDownSectionClick: () => void;
 };
-export type DropDownContainerPropsType = {
-  dropDownItems: DropDownItemsType;
-  defaultDropDownItem: DropDownItemType;
+
+export type DropDownSliceInitialStateType = {
+  selectDropDownItem: DropDownItemType;
+  defaultDropDownItems: DropDownItemsType;
+  unSelectDropDownItems: DropDownItemsType;
+};
+export type SelectDropDownItemPayloadActionType = {
+  dropDownItem: DropDownItemType;
 };
