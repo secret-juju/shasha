@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { LogoPng } from '../../../assets/header';
-import Header from '../../../components/header/Header';
+import Header from '../Header';
 
 describe('components/header', () => {
   it(`header has a logo what alt is "secret juju" and src is "LogoPng"`, () => {
