@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Login from './Login';
 
@@ -13,6 +13,7 @@ const { naver } = window as any;
 
 const LoginContainer = () => {
   const dispatch = useAppDispatch();
+  const { loginLoading, loginData } = useTypedSelector(loginSliceState);
 
   const REACT_APP_GOOGLE_API_KEY: DotEnvType = process.env.REACT_APP_GOOGLE_API_KEY;
   const REACT_APP_FACEBOOK_API_KEY: DotEnvType = process.env.REACT_APP_FACEBOOK_API_KEY;
@@ -57,6 +58,12 @@ const LoginContainer = () => {
     onFailureFacebookAuth,
     initializeNaverAuth,
   };
+
+  useEffect(() => {
+    console.log(loginLoading, loginData);
+    if (!loginLoading && 'accessToken' in loginData) {
+    }
+  }, [loginLoading, loginData]);
 
   return <Login apiKeyProps={apiKeyProps} funcProps={funcProps} />;
 };
