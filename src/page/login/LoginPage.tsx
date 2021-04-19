@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './style';
 
-import Header from '../../components/header/Header';
+import Header from '../../features/header/Header';
 import LoginContainer from '../../features/login/LoginContainer';
 
 const LoginPage = () => {
