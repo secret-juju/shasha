@@ -2,8 +2,9 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: [
+    'jest-localstorage-mock',
     'jest-plugin-context/setup',
-    '<rootDir>/src/__test__/config/importJestDOM.ts',
+    '@testing-library/jest-dom',
   ],
   testMatch: ['**/(*.)+(spec|test).[jt]s?(x)'],
   moduleNameMapper: {
