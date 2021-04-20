@@ -54,6 +54,7 @@
     "@types/testing-library__jest-dom": "^5.9.5",
     "@types/testing-library__react": "^10.2.0",
     "dotenv": "^8.2.0",
+    "jest-localstorage-mock": "^2.4.10",
     "jest-plugin-context": "^2.9.0",
     "ts-jest": "^26.5.3"
   }
