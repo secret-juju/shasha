@@ -9,12 +9,10 @@ export const numberAddedComma = (number: NumberAddedCommaPropType) => {
     .join('');
 };
 
-export const isPercentPostive = (percentNumber: PercentType) => {
+export const removePercentSign = (percentNumber: PercentType) => {
   const splitedPercentNumber = percentNumber.split('');
 
   splitedPercentNumber.pop();
 
-  const numberWithoutPercent = splitedPercentNumber.join('');
-
-  return Number(numberWithoutPercent) >= 0;
+  return Number(splitedPercentNumber.join(''));
 };
