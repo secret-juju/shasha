@@ -11,7 +11,7 @@ const MainPage = () => {
     <S.Container>
       <HeaderContainer />
       <DropDownContainer />
-      <StockWrapper />
+      <StockWrapper title='즐겨찾기' fluctuation='+5.74%' />
     </S.Container>
   );
 };
