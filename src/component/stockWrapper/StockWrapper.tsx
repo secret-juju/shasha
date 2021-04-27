@@ -1,12 +1,14 @@
 import React from 'react';
 
+import type { StockWrapperPropsType } from './StockWrapperType';
+
 import { removePercentSign } from '../../utils/StringUtils';
 
 import * as S from './style';
 
 import StockItemContainer from '../../features/stockItem/StockItemContainer';
 
-const StockWrapper = ({ title, fluctuation }) => {
+const StockWrapper = ({ title, fluctuation }: StockWrapperPropsType) => {
   const DATA_ARR = [
     {
       name: '그런증권',
@@ -20,7 +22,7 @@ const StockWrapper = ({ title, fluctuation }) => {
       positivity: '70%',
       curPrice: 10000,
       diff: -255,
-      fluctuation: '23.2%',
+      fluctuation: '+23.2%',
     },
     {
       name: '고런증권',
