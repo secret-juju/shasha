@@ -45,7 +45,7 @@ export const SelectDropDownItemWrapper = styled.article`
       border-bottom: 1px solid transparent;
     `}
 
-  background: transparent;
+  background: rgba(246, 246, 246, 0.7);
 
   & > span {
     margin-right: 0.3125rem;
@@ -99,6 +99,7 @@ export const DropDownItemWrapper = styled.div`
           animation: 0.3s ${DropDownFadeIn} ease-in-out;
         `
       : css`
+          display: none;
           opacity: 0;
           animation: 0.3s ${DropDownFadeOut} ease-in-out;
         `}
@@ -107,7 +108,7 @@ export const DropDownItemWrapper = styled.div`
 export const DropDownItem = styled(SelectDropDownItem)`
   height: 1.25rem;
   padding: 0.3125rem 0;
-  background: transparent;
+  background: rgba(246, 246, 246, 0.7);
   font-weight: 500;
 
   transition: all 0.3s ease-in-out;
