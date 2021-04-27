@@ -14,8 +14,11 @@ News-based stock recommendation services, built with React, Redux, Redux-Toolkit
 ├── public
 ├── src
 |   ├── \_\_mocks\_\_
+
 |   ├── assets
-|   ├── component
+
+|   ├── component 
+
 |   ├── features
 |   |   └── feature
 |   |   ├── style
