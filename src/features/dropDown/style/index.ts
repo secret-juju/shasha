@@ -7,14 +7,12 @@ const DropDownFadeIn = keyframes`
   }
   100% {
     opacity: 1;
-    height: 100%;
   }
 `;
 
 const DropDownFadeOut = keyframes`
   0% {
     opacity: 1;
-    height: 100%;
   }
   100% {
     opacity: 0;
@@ -83,6 +81,7 @@ export const DropDownItemWrapper = styled.div`
   position: absolute;
   top: 1.875rem;
   width: 7.25rem;
+  height: ${props => `calc(${props.itemLength} * 1.875rem)`};
   border: 1px solid #707070;
   border-top: 1px solid transparent;
   box-sizing: border-box;
@@ -91,18 +90,15 @@ export const DropDownItemWrapper = styled.div`
   ${props =>
     props.firstLoading &&
     css`
-      opacity: 0;
       animation: none !important;
     `}
   ${props =>
     props.active
       ? css`
-          height: ${props => `calc(${props.itemLength} * 1.875rem)`};
           opacity: 1;
           animation: 0.3s ${DropDownFadeIn} ease-in-out;
         `
       : css`
-          height: 0;
           opacity: 0;
           animation: 0.3s ${DropDownFadeOut} ease-in-out;
         `}
