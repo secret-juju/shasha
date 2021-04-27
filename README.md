@@ -10,15 +10,13 @@ News-based stock recommendation services, built with React, Redux, Redux-Toolkit
 
 # Project Structure
 
+```
 .
 ├── public
 ├── src
 |   ├── \_\_mocks\_\_
-
 |   ├── assets
-
-|   ├── component 
-
+|   ├── component
 |   ├── features
 |   |   └── feature
 |   |   ├── style
@@ -46,6 +44,7 @@ News-based stock recommendation services, built with React, Redux, Redux-Toolkit
 ├── README.md
 ├── tsconfig.json
 └── webpack.config.js
+```
 
 ## import
 
