@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 
 import MainPage from '../page/main/MainPage';
 import LoginPage from '../page/login/LoginPage';
-import LoginRedirect from '../features/loginRedirect/LoginRedirect';
+import LoginRedirect from '../component/loginRedirect/LoginRedirect';
 
 const MainRouter = () => {
   return (
