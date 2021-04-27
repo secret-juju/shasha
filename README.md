@@ -14,11 +14,11 @@ News-based stock recommendation services, built with React, Redux, Redux-Toolkit
 .
 ├── public
 ├── src
-|   ├── \_\_mocks\_\_
+|   ├── __mocks__
 |   ├── assets
 |   ├── component
 |   ├── features
-|   |   └── feature
+|   |   ├── feature
 |   |   ├── style
 |   |   ├── test
 |   |   ├── Featrue.tsx
@@ -27,6 +27,9 @@ News-based stock recommendation services, built with React, Redux, Redux-Toolkit
 |   |   └── FeatureType.ts
 |   ├── library
 |   ├── module
+|   |   ├── saga
+|   |   ├── slice
+|   |   └── store
 |   ├── page
 |   ├── routers
 |   ├── themes
