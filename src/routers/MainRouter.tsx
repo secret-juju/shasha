@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import MainPage from "./page/main/MainPage"
-import LoginPage from './page/login/LoginPage';
-import LoginRedirect from './features/loginRedirect/LoginRedirect';
+import MainPage from '../page/main/MainPage';
+import LoginPage from '../page/login/LoginPage';
+import LoginRedirect from '../features/loginRedirect/LoginRedirect';
 
-const Router = () => {
+const MainRouter = () => {
   return (
     <Switch>
       <Route exact path='/' component={MainPage} />
@@ -15,4 +15,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default MainRouter;
