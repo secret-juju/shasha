@@ -21,9 +21,14 @@ function* authLoginSaga(action: PayloadAction<AuthLoginPayloadActionType>) {
 
     const res = yield call(requestApiWithBody, { httpMethod, requestUrl, body, headers });
 
-    const newResDataObj = { ...res.data, authType };
+    console.log(res);
+    if ('data' in res) {
+      const newResDataObj = { ...res.data, authType };
 
-    yield put(authLoginSuccess(newResDataObj));
+      yield put(authLoginSuccess(newResDataObj));
+    } else {
+      throw new Error(`request ${requestUrl}, but network error`);
+    }
   } catch (error) {
     console.log(error);
     yield put(authLoginFailure(error));

@@ -7,9 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     *::-webkit-scrollbar {
         display: none;
     }
-    .sc-fznZeY {
-        height: 100%;
-    }
     #root {
         height: 100%;
     }
@@ -72,6 +69,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const GlobalContainer = styled.div`
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
+  background: #f6f6f6;
 `;

@@ -18,3 +18,11 @@ export type DropDownSliceInitialStateType = {
 export type SelectDropDownItemPayloadActionType = {
   dropDownItem: DropDownItemType;
 };
+
+export type DropDownTestInitialPropsType = {
+  active?: boolean;
+  selectDropDownItem?: DropDownItemType;
+  unSelectDropDownItems?: DropDownItemsType;
+  onDropDownItemClick?: (dropDownItem: DropDownItemType) => void;
+  onDropDownSectionClick?: () => void;
+};
