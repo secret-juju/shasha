@@ -1,10 +1,12 @@
 import React from 'react';
 
+import type { StockItemPropsType } from './StockItemType';
+
 import { StockFaceTheme, StockSignTheme } from '../../themes/StockTheme';
 
 import * as S from './style';
 
-const StockItem = ({ stockItemValues, stockItemThemes }) => {
+const StockItem = ({ stockItemValues, stockItemThemes }: StockItemPropsType) => {
   const { name, positivity, curPriceWithComma, diff, fluctuation } = stockItemValues;
   const { positivityStockTheme, diffStockTheme, fluctuationStockTheme } = stockItemThemes;
 
