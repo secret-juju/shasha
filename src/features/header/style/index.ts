@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Header = styled.header`
   width: 100%;
   height: 4.375rem;
+  border-bottom: 1px solid #6abf63;
   padding: 0 calc(0.75rem + 8vw);
   background: #4fd98d;
   box-sizing: border-box;
@@ -15,10 +16,12 @@ export const HeaderLogo = styled.img`
 
 export const HeaderSubNav = styled.nav`
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   width: 100%;
   height: 1.875rem;
   background: #ffffff;
+  border-bottom: 1px solid #707070;
   padding: 0 calc(0.75rem + 8vw);
   box-sizing: border-box;
 `;
