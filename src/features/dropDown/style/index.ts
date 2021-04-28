@@ -3,10 +3,12 @@ import styled, { css, keyframes } from 'styled-components';
 const DropDownFadeIn = keyframes`
   0% {
     opacity: 0;
+    visibility:hidden;
     height: 0px;
   }
   100% {
     opacity: 1;
+    visibility: visible;
   }
 `;
 
@@ -99,7 +101,7 @@ export const DropDownItemWrapper = styled.div`
           animation: 0.3s ${DropDownFadeIn} ease-in-out;
         `
       : css`
-          display: none;
+          visibility: hidden;
           opacity: 0;
           animation: 0.3s ${DropDownFadeOut} ease-in-out;
         `}
