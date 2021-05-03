@@ -93,7 +93,3 @@ export const requestApi = async ({ httpMethod, requestUrl, headers }: RequestApi
     console.log(error);
   }
 };
-
-export const logout = () => {
-  localStorage.clear();
-};
