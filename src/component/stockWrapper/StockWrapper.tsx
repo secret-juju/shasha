@@ -33,17 +33,21 @@ const StockWrapper = ({ title, fluctuation }: StockWrapperPropsType) => {
     },
   ];
 
+  const isNeedStockHeader = false;
+
   const isFluctuationPositive = removePercentSign(fluctuation);
 
   return (
     <S.StockWrapper>
-      <S.StockHeader>
-        <S.StockHeaderTriangle isFluctuationPositive={isFluctuationPositive} />
-        <S.StockTitle>{title}</S.StockTitle>
-        <S.StockFluctuation isFluctuationPositive={isFluctuationPositive}>
-          {fluctuation}
-        </S.StockFluctuation>
-      </S.StockHeader>
+      {isNeedStockHeader && (
+        <S.StockHeader>
+          <S.StockHeaderTriangle isFluctuationPositive={isFluctuationPositive} />
+          <S.StockTitle>{title}</S.StockTitle>
+          <S.StockFluctuation isFluctuationPositive={isFluctuationPositive}>
+            {fluctuation}
+          </S.StockFluctuation>
+        </S.StockHeader>
+      )}
       <S.StockListHeader>
         <S.StockListHeaderText>종목명</S.StockListHeaderText>
         <S.StockListHeaderText>긍정도</S.StockListHeaderText>
