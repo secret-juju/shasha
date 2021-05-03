@@ -35,9 +35,10 @@ export type LoginSliceInitialStateType = {
   loginError: null | string;
 };
 
+type authTypeString = 'google' | 'facebook' | 'naver';
 export type AuthLoginPayloadActionType = {
-  authType: string;
-  'oauth2-token': string;
+  authType: authTypeString;
+  Authorization: string;
 };
 export type AuthLoginSuccessPayloadActionType = {
   authType: string;
