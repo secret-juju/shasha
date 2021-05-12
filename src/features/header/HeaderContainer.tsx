@@ -1,25 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router';
-
-import { useTypedSelector } from '../../module/store';
-import { loginSliceState } from '../login/LoginSlice';
+import { checkIsLogin, logoutAndRefresh } from '../../utils/AuthUtils';
 
 import Header from './Header';
 
 const HeaderContainer = () => {
   const history = useHistory();
-  const { loginData } = useTypedSelector(loginSliceState);
 
-  console.log(loginData);
-
-  const isLoginNow = true;
+  const [isLoginNow, setIsLoginNow] = useState(false);
 
   const onAuthButtonClick = () => {
     if (isLoginNow) {
-      onLoginButtonClick();
-    } else {
       onLogoutButtonClick();
+    } else {
+      onLoginButtonClick();
     }
   };
 
@@ -29,9 +24,14 @@ const HeaderContainer = () => {
     }
   };
   const onLogoutButtonClick = () => {
-    alert('로그아웃 되었습니다.');
-    history.push('/login');
+    logoutAndRefresh();
   };
+
+  useEffect(() => {
+    checkIsLogin().then(isLogin => {
+      setIsLoginNow(isLogin);
+    });
+  }, []);
 
   return <Header isLoginNow={isLoginNow} onAuthButtonClick={onAuthButtonClick} />;
 };

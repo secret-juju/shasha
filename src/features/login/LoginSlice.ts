@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import {
+  LOCAL_STORAGE_ACCESS_TOKEN_NAME,
+  LOCAL_STORAGE_REFRESH_TOKEN_NAME,
+} from '../../library/requestApi';
+import { setLocalStorageItem } from '../../library/storage/storage';
+
 import type { StoreType } from '../../module/store';
 import type {
   AuthLoginFailurePayloadActionType,
@@ -7,11 +13,6 @@ import type {
   AuthLoginSuccessPayloadActionType,
   LoginSliceInitialStateType,
 } from './LoginType';
-
-import {
-  LOCAL_STORAGE_ACCESS_TOKEN_NAME,
-  LOCAL_STORAGE_REFRESH_TOKEN_NAME,
-} from '../../library/requestApi';
 
 const sliceName = 'login';
 const initialState: LoginSliceInitialStateType = {
@@ -29,9 +30,11 @@ const reducers = {
     state.loginData = action.payload;
     state.loginError = null;
 
-    localStorage.setItem('authType', action.payload.authType);
-    localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME, action.payload.accessToken);
-    localStorage.setItem(LOCAL_STORAGE_REFRESH_TOKEN_NAME, action.payload.refreshToken);
+    setLocalStorageItem('authType', action.payload.authType);
+    setLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME, action.payload.accessToken);
+    setLocalStorageItem(LOCAL_STORAGE_REFRESH_TOKEN_NAME, action.payload.refreshToken);
+
+    alert('로그인 되었습니다');
   },
   authLoginFailure: (state, action: PayloadAction<AuthLoginFailurePayloadActionType>) => {
     state.loginLoading = false;

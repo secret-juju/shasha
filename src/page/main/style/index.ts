@@ -7,10 +7,10 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const LoginWrapper = styled.div`
+export const StockListWrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 100px);
+  overflow: scroll;
 `;

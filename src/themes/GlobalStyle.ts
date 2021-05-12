@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
     * {
-        font-family:Noto Sans KR !important;
+        font-family:Roboto !important;
     }
     *::-webkit-scrollbar {
         display: none;

@@ -16,16 +16,17 @@ function* authLoginSaga(action: PayloadAction<AuthLoginPayloadActionType>) {
     const requestUrl = ACCOUNT_URL.login(authType);
     const body = {};
     const headers = {
-      'oauth2-token': action.payload['oauth2-token'],
+      Authorization: action.payload['Authorization'],
     };
 
     const res = yield call(requestApiWithBody, { httpMethod, requestUrl, body, headers });
 
-    console.log(res);
     if ('data' in res) {
       const newResDataObj = { ...res.data, authType };
 
       yield put(authLoginSuccess(newResDataObj));
+
+      location.href = '/';
     } else {
       throw new Error(`request ${requestUrl}, but network error`);
     }

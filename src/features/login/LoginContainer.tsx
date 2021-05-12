@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 
-import Login from './Login';
+import { checkIsLogin } from '../../utils/AuthUtils';
+
+import { useAppDispatch, useTypedSelector } from '../../module/store';
 
 import { DotEnvType } from '../../types';
 import { GoogleFailureResponseType, GoogleResponseType } from './LoginType';
 
-import { useAppDispatch, useTypedSelector } from '../../module/store';
+import { authLogin, loginSliceState } from './LoginSlice';
 
-import { authLogin, loginData, loginSliceState } from './LoginSlice';
-import axios from 'axios';
+import Login from './Login';
 
 const { naver } = window as any;
 
@@ -23,10 +25,8 @@ const LoginContainer = () => {
   const onSuccessGoogleAuth = async (response: GoogleResponseType) => {
     if ('tokenId' in response) {
       const res = await dispatch(
-        authLogin({ authType: 'google', 'oauth2-token': response.tokenId }),
+        authLogin({ authType: 'google', Authorization: response.tokenId }),
       );
-      console.log(`res`);
-      console.log(res);
     }
   };
   const onFailureGoogleAuth = (error: GoogleFailureResponseType) => {
@@ -34,24 +34,12 @@ const LoginContainer = () => {
   };
 
   const onSuccessFacebookAuth = async userInfo => {
-    console.log(userInfo);
-
     try {
       const res = await axios.get(
         `https://graph.facebook.com/v2.8/me?fields=id&access_token=${userInfo.accessToken}`,
       );
 
-      dispatch(authLogin({ authType: 'facebook', 'oauth2-token': res.data.id }));
-      // const res = await axios.post('http://localhost:3000/v1/facebook_auth', {
-      //   token: `${userInfo.accessToken}`,
-      // });
-
-      // const res = await axios.get(
-      //   `https://graph.facebook.com/v10.0/oauth/access_token?client_id=${305208847694209}&redirect_uri=${'http://localhost:3000/'}&client_secret=${'a467182b1fe8e32367205fa6ac66a237'}&code=${
-      //     userInfo.accessToken
-      //   }`,
-      // );
-      console.log(res);
+      dispatch(authLogin({ authType: 'facebook', Authorization: res.data.id }));
     } catch (error) {
       console.log(error.response);
     }
@@ -85,10 +73,8 @@ const LoginContainer = () => {
   };
 
   useEffect(() => {
-    console.log(loginLoading, loginData);
-    if (!loginLoading && 'accessToken' in loginData) {
-    }
-  }, [loginLoading, loginData]);
+    checkIsLogin();
+  }, []);
 
   return <Login apiKeyProps={apiKeyProps} funcProps={funcProps} />;
 };
