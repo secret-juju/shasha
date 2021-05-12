@@ -8,6 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-18.04
+    env:
+      REACT_APP_GOOGLE_KEY: ${{ secrets.REACT_APP_GOOGLE_KEY }}
+      REACT_APP_FACEBOOK_KEY: ${{ secrets.REACT_APP_FACEBOOK_KEY }}
+      REACT_APP_NAVER_KEY: ${{ secrets.REACT_APP_NAVER_KEY }}
+      REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+      
     steps:
       - name: Checkout master
         uses: actions/checkout@master
