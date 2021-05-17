@@ -2,21 +2,37 @@ import React from 'react';
 
 import * as S from './style';
 
+import { useAppDispatch } from '../../module/store';
+
+import { reissueAccessToken } from '../../library/requestLib';
+
+import {
+  searchBookmarkedCompany,
+  searchCompany,
+  searchCompanyByCompanyIndustryName,
+  searchKindOfIndustry,
+} from '../../features/stock/StockSlice';
+
 import HeaderContainer from '../../features/header/HeaderContainer';
 import DropDownContainer from '../../features/dropDown/DropDownContainer';
-import StockWrapper from '../../component/stockWrapper/StockWrapper';
-import WithLoginStockWrapper from '../../component/withLoginStockWrapper/WithLoginStockWrapper';
 import Toggle from '../../features/toggle/Toggle';
+import StockSection from '../../component/stockSection/StockSection';
 
 const MainPage = () => {
+  const dispatch = useAppDispatch();
+
+  dispatch(searchCompany({ 'sorting-condition': 'name', 'sorting-method': 'asc' }));
+  // dispatch(searchCompanyByCompanyIndustryName({companyIndustryName: ""}));
+  dispatch(searchBookmarkedCompany({ page: 1, size: 10 }));
+  dispatch(searchKindOfIndustry({}));
+  reissueAccessToken();
+
   return (
     <S.Container>
       <HeaderContainer />
       <S.StockListWrapper>
         <DropDownContainer />
-        <WithLoginStockWrapper title='즐겨찾기' fluctuation='-5.74%' />
-        <StockWrapper title='즐겨찾기' fluctuation='+5.74%' />
-        {/* <Toggle /> */}
+        <StockSection />
       </S.StockListWrapper>
     </S.Container>
   );
