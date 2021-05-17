@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
-import { checkIsLogin } from '../../utils/AuthUtils';
+import { checkIsLogin } from '../../utils/authUtils';
 
 import { useAppDispatch, useTypedSelector } from '../../module/store';
 
