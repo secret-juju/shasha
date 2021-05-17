@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   LOCAL_STORAGE_ACCESS_TOKEN_NAME,
   LOCAL_STORAGE_REFRESH_TOKEN_NAME,
-} from '../../library/requestApi';
+} from '../../library/requestLib';
 import { setLocalStorageItem } from '../../library/storage/storage';
 
 import type { StoreType } from '../../module/store';
