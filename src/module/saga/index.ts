@@ -1,9 +1,10 @@
 import { all, fork } from 'redux-saga/effects';
 
-import { watchAuthLogin } from '../../features/login/LoginSaga';
+import loginSaga from '../../features/login/LoginSaga';
+import stockSaga from '../../features/stock/StockSaga';
 
 function* rootSaga() {
-  yield all([fork(watchAuthLogin)]);
+  yield all([fork(loginSaga), fork(stockSaga)]);
 }
 
 export default rootSaga;
