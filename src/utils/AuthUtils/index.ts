@@ -1,5 +1,5 @@
 import { clearLocalStorage, getLocalStorageItem } from '../../library/storage/storage';
-import { LOCAL_STORAGE_ACCESS_TOKEN_NAME } from '../../library/requestApi';
+import { LOCAL_STORAGE_ACCESS_TOKEN_NAME } from '../../library/requestLib';
 
 export const checkAccessTokenEffective = async () => {
   const accessToken = getLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
