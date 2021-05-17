@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { getTheme } from '../../../themes/AppTheme';
+
 export const LoginSection = styled.section`
   display: grid;
   grid-template-rows: 6.25rem 1fr;
@@ -7,11 +9,11 @@ export const LoginSection = styled.section`
   height: 25rem;
   border: 0.0625rem solid #e2e2e2;
   padding: 3.8125rem 2.75rem;
-  background: #ffffff;
+  background: ${getTheme.getBackgroundTheme()};
 `;
 
 export const LoginSectionTitle = styled.span`
-  color: #2f2f2f;
+  color: ${getTheme.getColorTheme()};
   font-size: 3.125rem;
   font-weight: 900;
   line-height: 4.375rem;
@@ -24,7 +26,7 @@ export const LoginWrapper = styled.article`
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  padding: 30px 0 0 0;
+  padding: 1.875rem 0 0 0;
 
   & > button {
     width: 21.5625rem;
@@ -36,7 +38,7 @@ export const LoginWrapper = styled.article`
     & > span {
       width: 100%;
       color: #000000;
-      font-size: 21px !important;
+      font-size: 1.3125rem !important;
     }
   }
 
