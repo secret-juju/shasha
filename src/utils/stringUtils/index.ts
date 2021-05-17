@@ -1,4 +1,4 @@
-import type { NumberAddedCommaPropType, PercentType } from './type/StringUtilsType';
+import type { NumberAddedCommaPropType, PercentType } from './StringUtilsType';
 
 export const numberAddedComma = (number: NumberAddedCommaPropType) => {
   return String(number)
@@ -15,4 +15,8 @@ export const removePercentSign = (percentNumber: PercentType) => {
   splitedPercentNumber.pop();
 
   return Number(splitedPercentNumber.join(''));
+};
+
+export const isNullOfUndefined = target => {
+  return target === null || target === undefined;
 };
