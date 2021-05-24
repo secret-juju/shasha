@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './style';
 
-import { useAppDispatch } from '../../module/store';
+import { useAppDispatch, useTypedSelector } from '../../module/store';
 
 import { reissueAccessToken } from '../../library/requestLib';
 
@@ -12,18 +12,27 @@ import {
   searchCompanyByCompanyIndustryName,
   searchKindOfIndustry,
 } from '../../features/stock/StockSlice';
+import { dropDownSliceState } from '../../features/dropDown/DropDownSlice';
 
 import HeaderContainer from '../../features/header/HeaderContainer';
 import DropDownContainer from '../../features/dropDown/DropDownContainer';
 import Toggle from '../../features/toggle/Toggle';
 import StockSection from '../../component/stockSection/StockSection';
+import StockSortedSection from '../../component/stockSortedSection/StockSortedSection';
+
+const isSortedSection = selectDropDownItem => {
+  const needHeaderItemArray = ['업종명순'];
+
+  return needHeaderItemArray.includes(selectDropDownItem);
+};
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
 
+  const { selectDropDownItem } = useTypedSelector(dropDownSliceState);
+
   dispatch(searchCompany({ 'sorting-condition': 'name', 'sorting-method': 'asc' }));
-  // dispatch(searchCompanyByCompanyIndustryName({companyIndustryName: ""}));
-  dispatch(searchBookmarkedCompany({ page: 1, size: 10 }));
+  dispatch(searchBookmarkedCompany({}));
   dispatch(searchKindOfIndustry({}));
   reissueAccessToken();
 
@@ -31,8 +40,10 @@ const MainPage = () => {
     <S.Container>
       <HeaderContainer />
       <S.StockListWrapper>
-        <DropDownContainer />
-        <StockSection />
+        <S.DropDownContainerWrapper>
+          <DropDownContainer />
+        </S.DropDownContainerWrapper>
+        {isSortedSection(selectDropDownItem) ? <StockSection /> : <StockSortedSection />}
       </S.StockListWrapper>
     </S.Container>
   );
