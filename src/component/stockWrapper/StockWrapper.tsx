@@ -2,11 +2,11 @@ import React from 'react';
 
 import type { StockWrapperPropsType } from './StockWrapperType';
 
-import { removePercentSign } from '../../utils/StringUtils';
+import { removePercentSign } from '../../utils/stringUtils';
 
 import * as S from './style';
 
-import StockItemContainer from '../../features/stockItem/StockItemContainer';
+import StockItemContainer from '../../features/stock/StockItemContainer';
 
 const StockWrapper = ({ title, fluctuation }: StockWrapperPropsType) => {
   const DATA_ARR = [
@@ -56,9 +56,9 @@ const StockWrapper = ({ title, fluctuation }: StockWrapperPropsType) => {
         <S.StockListHeaderText textAlign='right'>등락률</S.StockListHeaderText>
       </S.StockListHeader>
       <S.StockItemWrapper>
-        {DATA_ARR.map(data => (
+        {/* {DATA_ARR.map(data => (
           <StockItemContainer key={data.name} {...data} />
-        ))}
+        ))} */}
       </S.StockItemWrapper>
     </S.StockWrapper>
   );
