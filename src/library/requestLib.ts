@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { getLocalStorageItem, setLocalStorageItem } from './storage/storage';
+
 import type { DotEnvType, AccessTokenType } from '../types';
 import type {
   RequestApiType,
@@ -7,6 +9,7 @@ import type {
   RequestApiWithAccessTokenType,
   RequestApiWithBodyAndAccessTokenType,
 } from '../types/requestApiType';
+import { ACCOUNT_URL } from './apiUrlLib';
 
 export const methodType = {
   POST: 'post',
@@ -18,8 +21,7 @@ export const methodType = {
 const BASE_URL: DotEnvType = process.env.REACT_APP_BASE_URL;
 export const LOCAL_STORAGE_ACCESS_TOKEN_NAME = 'accessToken';
 export const LOCAL_STORAGE_REFRESH_TOKEN_NAME = 'refreshToken';
-const ACCESS_TOKEN_NAME = 'Bearer Authorization';
-export const AuthorizationName = 'Authorization';
+export const AUTHORIZATION_NAME = 'Authorization';
 
 export const requestApiWithBodyAndAccessToken = async ({
   httpMethod,
@@ -27,7 +29,7 @@ export const requestApiWithBodyAndAccessToken = async ({
   body,
   headers,
 }: RequestApiWithBodyAndAccessTokenType) => {
-  const accessToken: AccessTokenType = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
+  const accessToken: AccessTokenType = getLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
 
   try {
     if (accessToken === null) {
@@ -36,7 +38,7 @@ export const requestApiWithBodyAndAccessToken = async ({
 
     const res = await axios[httpMethod](BASE_URL + requestUrl, body, {
       ...headers,
-      [ACCESS_TOKEN_NAME]: accessToken,
+      [AUTHORIZATION_NAME]: `Bearer ${accessToken}`,
     });
 
     return res;
@@ -65,7 +67,7 @@ export const requestApiWithAccessToken = async ({
   requestUrl,
   headers,
 }: RequestApiWithAccessTokenType) => {
-  const accessToken: AccessTokenType = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
+  const accessToken: AccessTokenType = getLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
 
   try {
     if (accessToken === null) {
@@ -73,8 +75,10 @@ export const requestApiWithAccessToken = async ({
     }
 
     const res = await axios[httpMethod](BASE_URL + requestUrl, {
-      ...headers,
-      [ACCESS_TOKEN_NAME]: accessToken,
+      headers: {
+        ...headers,
+        [AUTHORIZATION_NAME]: `Bearer ${accessToken}`,
+      },
     });
 
     return res;
@@ -90,6 +94,22 @@ export const requestApi = async ({ httpMethod, requestUrl, headers }: RequestApi
     });
 
     return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const reissueAccessToken = async () => {
+  try {
+    const accessToken = getLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
+    const refreshToken = getLocalStorageItem(LOCAL_STORAGE_REFRESH_TOKEN_NAME);
+
+    const httpMethod = methodType.POST;
+    const requestUrl = ACCOUNT_URL.reissueAccessToken();
+
+    const res = await axios[httpMethod](BASE_URL + requestUrl, { accessToken, refreshToken }, {});
+
+    setLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME, res.data.token);
   } catch (error) {
     console.log(error);
   }

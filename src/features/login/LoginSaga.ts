@@ -1,11 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { call, put, takeLatest } from '@redux-saga/core/effects';
+
+import { all, call, fork, put, takeLatest } from '@redux-saga/core/effects';
 
 import { AuthLoginPayloadActionType } from './LoginType';
-import { methodType, requestApiWithBody } from '../../library/requestApi';
+import { AUTHORIZATION_NAME, methodType, requestApiWithBody } from '../../library/requestLib';
 
-import { ACCOUNT_URL } from '../../library/requestUrl';
-
+import { ACCOUNT_URL } from '../../library/apiUrlLib';
 import { authLogin, authLoginSuccess, authLoginFailure } from './LoginSlice';
 
 function* authLoginSaga(action: PayloadAction<AuthLoginPayloadActionType>) {
@@ -16,7 +16,7 @@ function* authLoginSaga(action: PayloadAction<AuthLoginPayloadActionType>) {
     const requestUrl = ACCOUNT_URL.login(authType);
     const body = {};
     const headers = {
-      Authorization: action.payload['Authorization'],
+      [AUTHORIZATION_NAME]: action.payload['Authorization'],
     };
 
     const res = yield call(requestApiWithBody, { httpMethod, requestUrl, body, headers });
@@ -36,6 +36,10 @@ function* authLoginSaga(action: PayloadAction<AuthLoginPayloadActionType>) {
   }
 }
 
-export function* watchAuthLogin() {
+function* watchAuthLogin() {
   yield takeLatest(authLogin.type, authLoginSaga);
+}
+
+export default function* loginSaga() {
+  yield all([fork(watchAuthLogin)]);
 }

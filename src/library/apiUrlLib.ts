@@ -1,4 +1,29 @@
+import { isNullOfUndefined } from '../utils/stringUtils';
+
+const getUrlWithQuery = ({ queryObject, defaultURL, queryNameArr }) => {
+  const URLArr = [defaultURL];
+
+  for (const queryName of queryNameArr) {
+    if (!isNullOfUndefined(queryObject[queryName])) {
+      if (URLArr.length === 1) {
+        URLArr.push('?');
+      } else {
+        URLArr.push('&');
+      }
+
+      URLArr.push(`${queryName}=${queryObject[queryName]}`);
+    }
+  }
+
+  const resultUrl = URLArr.join('');
+
+  return resultUrl;
+};
+
 export const ACCOUNT_URL = {
+  reissueAccessToken: function () {
+    return `/auth/token`;
+  },
   login: function (oauthType: string) {
     return `/login/oauth2/code/${oauthType}`;
   },
@@ -14,14 +39,31 @@ export const BOOKMARK_URL = {
 };
 
 export const COMPANY_URL = {
-  searchCompany: function () {
-    return `/company`;
+  searchCompany: function (queryObject) {
+    const defaultURL = '/company';
+    const queryNameArr = ['sorting-condition', 'sorting-method'];
+
+    const resultURL = getUrlWithQuery({ queryObject, defaultURL, queryNameArr });
+
+    return resultURL;
   },
-  searchCompanyByCompanyIndustryName: function (companyIndustryName) {
-    return `/company${companyIndustryName}`;
+  searchCompanyByCompanyIndustryName: function (queryObject) {
+    const { companyIndustryName } = queryObject;
+
+    const queryNameArr = ['page', 'size'];
+    const defaultURL = `/company/${companyIndustryName}`;
+
+    const resultURL = getUrlWithQuery({ queryObject, defaultURL, queryNameArr });
+
+    return resultURL;
   },
-  searchBookmarkedCompany: function () {
-    return `/company/bookmarked`;
+  searchBookmarkedCompany: function (queryObject) {
+    const defaultURL = `/company/bookmarked`;
+    const queryNameArr = ['page', 'size'];
+
+    const resultURL = getUrlWithQuery({ queryObject, defaultURL, queryNameArr });
+
+    return resultURL;
   },
 };
 

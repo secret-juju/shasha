@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import { getTheme } from '../../../themes/AppTheme';
 import { StockTheme } from '../../../themes/StockTheme';
 
 export const StockItem = styled.div`
@@ -17,7 +19,7 @@ export const StockItem = styled.div`
 `;
 
 export const StockName = styled.span`
-  color: #2f2f2f;
+  color: ${getTheme.getColorTheme()};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -38,7 +40,7 @@ export const PositivityValue = styled.span`
 `;
 
 export const StockCurPrice = styled.span`
-  color: #2f2f2f;
+  color: ${getTheme.getColorTheme()};
   text-align: right;
 `;
 
@@ -46,10 +48,9 @@ export const StockDiff = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  color: #2f2f2f;
+  color: ${getTheme.getColorTheme()};
 `;
 export const DiffSign = styled.img`
-  /* width: 0px; */
   margin-left: 0.375rem;
 `;
 export const DiffValue = styled.span`

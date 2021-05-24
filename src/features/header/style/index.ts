@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
+import { getTheme } from '../../../themes/AppTheme';
+
 export const Header = styled.header`
   width: 100%;
   height: 4.375rem;
   border-bottom: 1px solid #6abf63;
   padding: 0 calc(0.75rem + 8vw);
-  background: #4fd98d;
+  background: ${getTheme.getHeaderTheme('background')};
   box-sizing: border-box;
 `;
 
@@ -20,8 +22,8 @@ export const HeaderSubNav = styled.nav`
   justify-content: flex-end;
   width: 100%;
   height: 1.875rem;
-  background: #ffffff;
-  border-bottom: 1px solid #707070;
+  background: ${getTheme.getHeaderTheme('sub-nav__background')};
+  border-bottom: 0.0625rem solid #707070;
   padding: 0 calc(0.75rem + 8vw);
   box-sizing: border-box;
 `;
@@ -29,14 +31,14 @@ export const HeaderSubNav = styled.nav`
 export const HeaderAuthButton = styled.button`
   width: max-content;
   height: max-content;
-  color: #4b4b4b;
-  font-size: 18px;
+  color: ${getTheme.getHeaderTheme('auth-button__color')};
+  font-size: 1.125rem;
   font-weight: 300;
   background: none;
   border: none;
   padding: 0;
 
   &:hover {
-    color: #000000;
+    color: ${getTheme.getHeaderTheme('auth-button__color--hover')};
   }
 `;

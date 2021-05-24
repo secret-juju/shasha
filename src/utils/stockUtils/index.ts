@@ -1,4 +1,4 @@
-import type { TargetValueType } from './type/StockUtilsType';
+import type { TargetValueType } from './StockUtilsType';
 
 export const sign2StockThemeText = (targetValue: TargetValueType) => {
   if (targetValue > 0) {

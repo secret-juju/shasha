@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router';
-import { checkIsLogin, logoutAndRefresh } from '../../utils/AuthUtils';
+import { checkIsLogin, logoutAndRefresh } from '../../utils/authUtils';
 
 import Header from './Header';
 

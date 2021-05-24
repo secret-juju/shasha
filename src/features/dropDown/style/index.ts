@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
+import { getTheme } from '../../../themes/AppTheme';
+
 const DropDownFadeIn = keyframes`
   0% {
     opacity: 0;
@@ -40,14 +42,14 @@ export const SelectDropDownItemWrapper = styled.article`
   width: 7.25rem;
   height: 1.25rem;
   padding: 0.3125rem 0;
-  border: 1px solid #707070;
+  border: 0.0625rem solid #707070;
   ${props =>
     props.active &&
     css`
       border-bottom: 1px solid transparent;
     `}
 
-  background: rgba(246, 246, 246, 0.7);
+  background: #f6f6f646;
 
   & > span {
     margin-right: 0.3125rem;
@@ -61,7 +63,7 @@ export const SelectDropDownItemWrapper = styled.article`
 export const SelectDropDownItem = styled.span`
   display: flex;
   justify-content: center;
-  color: #2f2f2f;
+  color: ${getTheme.getColorTheme()};
   font-size: 1.25rem;
   font-weight: bold;
 `;
@@ -84,8 +86,8 @@ export const DropDownItemWrapper = styled.div`
   top: 1.875rem;
   width: 7.25rem;
   height: ${props => `calc(${props.itemLength} * 1.875rem)`};
-  border: 1px solid #707070;
-  border-top: 1px solid transparent;
+  border: 0.0625rem solid #707070;
+  border-top: 0.0625rem solid transparent;
   box-sizing: border-box;
   overflow: hidden;
 
@@ -110,13 +112,13 @@ export const DropDownItemWrapper = styled.div`
 export const DropDownItem = styled(SelectDropDownItem)`
   height: 1.25rem;
   padding: 0.3125rem 0;
-  background: rgba(246, 246, 246, 0.7);
+  background: ${getTheme.getDropDownTheme('background')};
   font-weight: 500;
 
   transition: all 0.3s ease-in-out;
 
   &:hover {
     cursor: pointer;
-    background: #e0e0e0;
+    background: ${getTheme.getDropDownTheme('background--hover')};
   }
 `;
