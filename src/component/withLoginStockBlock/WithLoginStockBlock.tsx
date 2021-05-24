@@ -1,52 +1,30 @@
 import React from 'react';
 
-import type { WithLoginStockWrapperPropsType } from './WithLoginStockWrapperType';
+import type { WithLoginStockBlockPropsType } from './WithLoginStockBlockType';
 
-import { removePercentSign } from '../../utils/stringUtils';
+import { sign2StockThemeText } from '../../utils/stockUtils';
 import { getLocalStorageItem } from '../../library/storage/storage';
 import { LOCAL_STORAGE_ACCESS_TOKEN_NAME } from '../../library/requestLib';
 
 import * as S from './style';
 
+import { StockSignTheme } from '../../themes/StockTheme';
+
 import StockItemContainer from '../../features/stock/StockItemContainer';
 
-const WithLoginStockWrapper = ({ title, fluctuation }: WithLoginStockWrapperPropsType) => {
+const WithLoginStockBlock = ({ title, fluctuation, companyInfo }: WithLoginStockBlockPropsType) => {
   const isLogin = !!getLocalStorageItem(LOCAL_STORAGE_ACCESS_TOKEN_NAME);
 
-  const DATA_ARR = [
-    {
-      name: '그런증권',
-      positivity: '50%',
-      curPrice: 10000,
-      diff: 255,
-      fluctuation: '-23.2%',
-    },
-    {
-      name: '요런증권',
-      positivity: '70%',
-      curPrice: 10000,
-      diff: -255,
-      fluctuation: '+23.2%',
-    },
-    {
-      name: '고런증권',
-      positivity: '0%',
-      curPrice: 10000,
-      diff: 0,
-      fluctuation: '0%',
-    },
-  ];
-
-  const isFluctuationPositive = removePercentSign(fluctuation);
+  const isFluctuationPositive = sign2StockThemeText(fluctuation);
 
   return (
     <S.StockWrapper>
       {isLogin ? (
         <S.StockHeader>
-          <S.StockHeaderTriangle isFluctuationPositive={isFluctuationPositive} />
+          <S.StockHeaderTriangle isFluctuationPositive={StockSignTheme[isFluctuationPositive]} />
           <S.StockTitle>{title}</S.StockTitle>
           <S.StockFluctuation isFluctuationPositive={isFluctuationPositive}>
-            {fluctuation}
+            {fluctuation}%
           </S.StockFluctuation>
         </S.StockHeader>
       ) : (
@@ -63,9 +41,11 @@ const WithLoginStockWrapper = ({ title, fluctuation }: WithLoginStockWrapperProp
       </S.StockListHeader>
       {isLogin ? (
         <S.StockItemWrapper>
-          {/* {DATA_ARR.map(data => (
-            <StockItemContainer key={data.name} {...data} />
-          ))} */}
+          {companyInfo?.companies?.length ? (
+            companyInfo?.companies?.map(data => <StockItemContainer key={data.name} {...data} />)
+          ) : (
+            <S.NeedBookmarkedText>즐겨찾기 등록 시 바로보기가 가능합니다.</S.NeedBookmarkedText>
+          )}
         </S.StockItemWrapper>
       ) : (
         <S.LoginRedirectButton to='/login'>로그인 후 사용가능</S.LoginRedirectButton>
@@ -74,4 +54,4 @@ const WithLoginStockWrapper = ({ title, fluctuation }: WithLoginStockWrapperProp
   );
 };
 
-export default WithLoginStockWrapper;
+export default WithLoginStockBlock;
