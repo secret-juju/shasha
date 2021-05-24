@@ -40,7 +40,7 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ${{ secrets.AWS_REGION }} \
-            S3-Files s3://dsm-cms.com
+            dist s3://dsm-cms.com
       - name: Create invalidation in CloudFront
         uses: chetan/invalidate-cloudfront-action@master
         env:
