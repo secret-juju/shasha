@@ -1,12 +1,17 @@
 import type { NumberAddedCommaPropType, PercentType } from './StringUtilsType';
 
 export const numberAddedComma = (number: NumberAddedCommaPropType) => {
-  return String(number)
-    .split('')
-    .reverse()
-    .map((n, index) => (index === 0 || index % 3 ? n : n + ','))
-    .reverse()
-    .join('');
+  const hasMinus = number < 0 ? '-' : '';
+
+  return (
+    hasMinus +
+    String(Math.abs(number))
+      .split('')
+      .reverse()
+      .map((n, index) => (index === 0 || index % 3 ? n : n + ','))
+      .reverse()
+      .join('')
+  );
 };
 
 export const removePercentSign = (percentNumber: PercentType) => {

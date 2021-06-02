@@ -14,6 +14,8 @@ import StockItemContainer from '../../features/stock/StockItemContainer';
 const StockBlock = ({ isNeedStockHeader, title }) => {
   const { industry } = useTypedSelector(stockSliceState);
 
+  console.log(industry);
+
   const industryDataByTitle = industry[title];
   const averageFluctuationRateTheme = sign2StockThemeText(
     industryDataByTitle?.averageFluctuationRate,

@@ -6,6 +6,7 @@ export type StockItemContainerPropsType = {
   differenceFromYesterday: number;
   fluctuationRate: number;
   name: string;
+  tickerSymbol: string;
 };
 export type StockItemPropsType = {
   stockItemValues: companyType;
@@ -22,6 +23,7 @@ export type companyType = {
   differenceFromYesterday: number;
   fluctuationRate: number;
   name: string;
+  tickerSymbol: string;
 };
 export type companyInfoType = {
   averageFluctuationRate: number;

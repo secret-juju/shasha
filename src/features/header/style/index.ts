@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getTheme } from '../../../themes/AppTheme';
@@ -11,9 +12,11 @@ export const Header = styled.header`
   box-sizing: border-box;
 `;
 
-export const HeaderLogo = styled.img`
+export const HeaderLogo = styled(Link)`
+  display: flex;
   width: 7.6875rem;
   height: 3.4375rem;
+  background: ${props => `url(${props.url})`};
 `;
 
 export const HeaderSubNav = styled.nav`
