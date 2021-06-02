@@ -64,6 +64,7 @@ function* searchCompanyByCompanyIndustryNameSaga(
     const headers = {};
 
     const res = yield call(requestApi, { httpMethod, requestUrl, headers });
+    console.log(res);
 
     yield put({
       type: searchCompanyByCompanyIndustryNameSuccess,

@@ -4,6 +4,7 @@ export type companyType = {
   differenceFromYesterday: number;
   fluctuationRate: number;
   name: string;
+  tickerSymbol: string;
 };
 export type companyInfoType = {
   averageFluctuationRate: number;

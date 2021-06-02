@@ -12,6 +12,7 @@ const StockItemContainer = ({
   differenceFromYesterday,
   fluctuationRate,
   name,
+  tickerSymbol,
 }: StockItemContainerPropsType) => {
   const averagePositivityStockTheme: StockThemeType = half2StockThemeText(averagePositivity);
   const differenceFromYesterdayStockTheme: StockThemeType = sign2StockThemeText(
@@ -25,6 +26,7 @@ const StockItemContainer = ({
     differenceFromYesterday,
     fluctuationRate,
     name,
+    tickerSymbol,
   };
   const stockItemThemes = {
     averagePositivityStockTheme,

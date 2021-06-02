@@ -37,13 +37,15 @@ export const requestApiWithBodyAndAccessToken = async ({
     }
 
     const res = await axios[httpMethod](BASE_URL + requestUrl, body, {
-      ...headers,
-      [AUTHORIZATION_NAME]: `Bearer ${accessToken}`,
+      headers: {
+        ...headers,
+        [AUTHORIZATION_NAME]: `Bearer ${accessToken}`,
+      },
     });
 
     return res;
   } catch (error) {
-    console.log(error);
+    throw error.response;
   }
 };
 
@@ -58,7 +60,7 @@ export const requestApiWithBody = async ({
 
     return res;
   } catch (error) {
-    console.log(error);
+    throw error.response;
   }
 };
 
@@ -83,7 +85,7 @@ export const requestApiWithAccessToken = async ({
 
     return res;
   } catch (error) {
-    console.log(error);
+    throw error.response;
   }
 };
 
@@ -95,7 +97,7 @@ export const requestApi = async ({ httpMethod, requestUrl, headers }: RequestApi
 
     return res;
   } catch (error) {
-    console.log(error);
+    throw error.response;
   }
 };
 

@@ -15,6 +15,7 @@ const StockItem = ({ stockItemValues, stockItemThemes }: StockItemPropsType) => 
     differenceFromYesterday,
     fluctuationRate,
     name,
+    tickerSymbol,
   } = stockItemValues;
   const {
     averagePositivityStockTheme,
@@ -23,7 +24,7 @@ const StockItem = ({ stockItemValues, stockItemThemes }: StockItemPropsType) => 
   } = stockItemThemes;
 
   return (
-    <S.StockItem>
+    <S.StockItem to={`/stock/${tickerSymbol}`}>
       <S.StockName>{name}</S.StockName>
       <S.StockPositivity>
         <S.PositivityImage src={StockFaceTheme[averagePositivityStockTheme]} />

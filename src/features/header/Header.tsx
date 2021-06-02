@@ -10,7 +10,7 @@ const Header = ({ isLoginNow, onAuthButtonClick }: HeaderPropsType) => {
   return (
     <>
       <S.Header>
-        <S.HeaderLogo alt='secret juju' src={LogoPng} />
+        <S.HeaderLogo alt='secret juju' url={LogoPng} to='/' />
       </S.Header>
       <S.HeaderSubNav>
         <S.HeaderAuthButton onClick={onAuthButtonClick}>

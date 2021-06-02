@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 import { getTheme } from '../../../themes/AppTheme';
 import { StockTheme } from '../../../themes/StockTheme';
 
-export const StockItem = styled.div`
+export const StockItem = styled(Link)`
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 1fr 54px 100px 70px 70px;
@@ -11,6 +13,8 @@ export const StockItem = styled.div`
   box-sizing: border-box;
 
   transition: background-color 300ms ease-in-out;
+
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;

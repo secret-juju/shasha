@@ -3,17 +3,17 @@ import React from 'react';
 import * as S from './style';
 
 import HeaderContainer from '../../features/header/HeaderContainer';
-import StockPageItem from '../../features/stockPage/StockPageItem';
+import StockInfoSection from '../../component/stockInfoSection/StockInfoSection';
 
-const StockPage = () => {
+const StockInfoPage = () => {
   return (
     <S.StockPageContainer>
       <HeaderContainer />
       <S.StockWrapper>
-        <StockPageItem />
+        <StockInfoSection />
       </S.StockWrapper>
     </S.StockPageContainer>
   );
 };
 
-export default StockPage;
+export default StockInfoPage;
