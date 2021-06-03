@@ -13,9 +13,8 @@ function* searchStockDetailSaga(action) {
     const requestUrl = STOCK_URL.searchStockDetail(companyTickerSymbol);
     const headers = {};
 
-    const res = yield call(requestApiWithAccessToken, { httpMethod, requestUrl, headers });
+    const res = yield call(requestApi, { httpMethod, requestUrl, headers });
 
-    console.log(res);
 
     yield put({ type: searchStockDetailSuccess, payload: res.data });
   } catch (error) {

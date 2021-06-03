@@ -64,7 +64,6 @@ function* searchCompanyByCompanyIndustryNameSaga(
     const headers = {};
 
     const res = yield call(requestApi, { httpMethod, requestUrl, headers });
-    console.log(res);
 
     yield put({
       type: searchCompanyByCompanyIndustryNameSuccess,
@@ -74,7 +73,6 @@ function* searchCompanyByCompanyIndustryNameSaga(
       },
     });
 
-    // console.log(res);
   } catch (error) {}
 }
 function* searchBookmarkedCompanySaga(
@@ -100,7 +98,6 @@ function* searchKindOfIndustrySaga(action: PayloadAction<SearchKindOfIndustryPay
 
     const res = yield call(requestApi, { httpMethod, requestUrl, headers });
 
-    // console.log(res);
 
     yield put({ type: searchKindOfIndustrySuccess, payload: res.data });
   } catch (error) {}

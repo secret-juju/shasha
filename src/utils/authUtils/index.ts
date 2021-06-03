@@ -26,6 +26,5 @@ export const checkIsLogin = async () => {
 export const logoutAndRefresh = () => {
   clearLocalStorage();
   alert('로그아웃 되었습니다.');
-  console.log(location);
   location.href = '/login';
 };

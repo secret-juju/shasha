@@ -28,7 +28,6 @@ const StockInfoSection = () => {
     stockInfoSliceState,
   );
 
-  console.log(stock);
 
   const targetTickerSymbol = location.pathname.split('/')[2];
 
