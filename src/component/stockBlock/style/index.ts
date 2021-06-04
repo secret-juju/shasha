@@ -9,6 +9,11 @@ export const StockBlockArticle = styled.article`
   height: min-content;
   border: 1px solid #e2e2e2;
   background: #ffffff;
+
+  ${props => props.specialKey === 2 && css`
+    position: absolute;
+    transform: translate(-630px, 240px);
+  `}
 `;
 
 export const StockHeader = styled.header`

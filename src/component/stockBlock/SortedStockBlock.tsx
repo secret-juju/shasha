@@ -4,9 +4,9 @@ import * as S from './style';
 
 import StockItemContainer from '../../features/stock/StockItemContainer';
 
-const SortedStockBlock = ({ companies }) => {
+const SortedStockBlock = ({ companies, specialKey }) => {
   return (
-    <S.StockBlockArticle>
+    <S.StockBlockArticle specialKey={specialKey}>
       <S.StockListHeader>
         <S.StockListHeaderText>종목명</S.StockListHeaderText>
         <S.StockListHeaderText>긍정도</S.StockListHeaderText>

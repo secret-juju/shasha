@@ -28,8 +28,8 @@ const StockSortedSection = () => {
         fluctuation={averageFluctuationRate}
         companyInfo={bookmarked}
       />
-      {restDefaultStockCompanies.map(companies => (
-        <SortedStockBlock key={companies[0].name} companies={companies} />
+      {restDefaultStockCompanies.map((companies, index) => (
+        <SortedStockBlock key={companies[0].name} specialKey={index} companies={companies} />
       ))}
     </S.StockWrapper>
   );
